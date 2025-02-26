@@ -9,7 +9,7 @@
 body {
   display: flex;
   min-height: 100vh;
-  background-image: url("C:\\Users\\sivasankar\\OneDrive\\Desktop\\Mern-Project\\Health-Monitor\\src\\assets\\blue-earth.jpg");
+  background-image: url("./assets/blue-earth.jpg");
   background-size: cover;
   background-attachment: fixed; /* This prevents the background from stretching */
   background-position: center;
