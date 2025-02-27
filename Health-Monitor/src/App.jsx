@@ -83,9 +83,87 @@ function App() {
     'high blood pressure': 'Maintain a healthy diet low in salt, exercise regularly, manage stress, and take prescribed medications. Regular monitoring is important. Consult your healthcare provider for guidance.',
     'swollen legs': 'Elevate your legs when resting. Reduce salt intake. Stay active. Seek medical attention if swelling is sudden, painful, or accompanied by difficulty breathing.',
     
-    // And so on for the rest of the symptom database...
+    // Skin conditions
+    'rash': 'Avoid scratching. Try cool compresses or oatmeal baths. Use fragrance-free moisturizers. Seek medical attention if rapidly spreading, painful, accompanied by fever, or if it forms blisters.',
+    'itching': 'Avoid scratching. Use fragrance-free moisturizers, cool compresses, or oatmeal baths. Try over-the-counter antihistamines. Consult a doctor if severe or persistent.',
+    'hives': 'Take over-the-counter antihistamines. Apply cool compresses. Avoid triggers. Seek emergency care if accompanied by difficulty breathing or swelling of face, lips, or tongue.',
+    'dry skin': 'Use moisturizers regularly, especially after bathing. Use gentle, fragrance-free cleansers. Consider using a humidifier. Consult a dermatologist if severe or not improving with self-care.',
+    'excessive sweating': 'Use antiperspirants, wear moisture-wicking clothing, and practice good hygiene. Consult a doctor if excessive sweating interferes with daily activities or started suddenly.',
+    
+    // Musculoskeletal
+    'joint pain': 'Rest the affected joint. Apply ice for acute pain or heat for chronic pain. Use over-the-counter pain relievers if needed. Consult a doctor if severe, persistent, or accompanied by swelling or redness.',
+    'back pain': 'Maintain good posture, use proper lifting techniques, stay active, and strengthen core muscles. Try over-the-counter pain relievers and heat/ice therapy. Consult a doctor if severe, persistent, or if you have neurological symptoms.',
+    'muscle aches': 'Rest, apply ice or heat, and try over-the-counter pain relievers. Stay hydrated and consider gentle stretching. Seek medical attention if severe, persistent, or if you also have a rash or fever.',
+    'neck pain': 'Apply heat or ice, practice good posture, and try gentle stretches. Seek medical attention if severe, persistent, or accompanied by numbness or weakness in arms or hands.',
+    'leg cramps': 'Gently stretch and massage the affected muscle. Stay hydrated and consider adding potassium-rich foods to your diet. Consult a doctor if frequent or severe.',
+    
+    // General symptoms
+    'fever': 'Rest and stay hydrated. Take acetaminophen or ibuprofen to reduce fever. Seek medical attention if fever is very high (>103°F/39.4°C), lasts more than 3 days, or is accompanied by severe symptoms.',
+    'fatigue': 'Ensure adequate rest and sleep. Stay hydrated and maintain a balanced diet. Consider stress reduction techniques. Consult a doctor if persistent or significantly impacts daily activities.',
+    'weakness': 'Rest and maintain good nutrition. Seek medical attention if sudden, severe, or accompanied by other symptoms like fever or difficulty speaking.',
+    'weight loss': 'Consult a healthcare provider for unexplained weight loss as this could indicate various medical conditions requiring proper evaluation.',
+    'weight gain': 'Focus on balanced nutrition and regular physical activity. Consult a healthcare provider if weight gain is rapid, unexpected, or accompanied by other symptoms.',
+    'night sweats': 'Keep your bedroom cool, use moisture-wicking bedding, and avoid alcohol before bed. Consult a doctor if persistent or accompanied by fever, weight loss, or other concerning symptoms.',
+    'insomnia': 'Maintain a regular sleep schedule, create a restful environment, limit screen time before bed, and avoid caffeine late in the day. Consult a doctor if persistent or significantly impacts daily functioning.',
+    
+    // Eye symptoms
+    'red eye': 'Rest your eyes. Use lubricating eye drops. Avoid touching or rubbing your eyes. Seek medical attention if painful, affects vision, or doesn\'t improve within a day or two.',
+    'eye pain': 'SEEK PROMPT MEDICAL ATTENTION. Eye pain can indicate serious conditions requiring professional evaluation.',
+    'blurred vision': 'SEEK MEDICAL ATTENTION. Sudden or persistent blurred vision can indicate serious conditions requiring prompt evaluation.',
+    'double vision': 'SEEK IMMEDIATE MEDICAL ATTENTION. This could indicate a serious neurological condition.',
+    
+    // Ear symptoms
+    'ear pain': 'Apply a warm compress. Try over-the-counter pain relievers. Keep the ear dry. Consult a doctor if severe, persistent, or accompanied by fever, discharge, or hearing loss.',
+    'hearing loss': 'Seek medical evaluation. Avoid inserting anything into the ear. Protect ears from loud noises. This requires professional assessment.',
+    'ringing in ears': 'Avoid loud noises. Try white noise or relaxation techniques. Consult a doctor for persistent or bothersome tinnitus.',
+    
+    // Urinary & reproductive
+    'painful urination': 'Drink plenty of water. Avoid alcohol and caffeine. Seek medical attention as this often indicates infection requiring treatment.',
+    'frequent urination': 'Limit fluid intake before bedtime. Avoid caffeine and alcohol. Consult a doctor as this could indicate diabetes, infection, or other conditions.',
+    'blood in urine': 'SEEK PROMPT MEDICAL ATTENTION. This can indicate infection, kidney stones, or more serious conditions requiring evaluation.',
+    'menstrual pain': 'Apply heat to the lower abdomen. Try over-the-counter pain relievers. Rest as needed. Consult a doctor if severe or significantly interferes with daily activities.',
+    'irregular periods': 'Track your cycle. Maintain a healthy lifestyle. Consult a healthcare provider as irregular periods can indicate hormonal imbalances or other conditions requiring evaluation.',
+    
+    // Mental health
+    'anxiety': 'Practice deep breathing and mindfulness techniques. Maintain physical activity and adequate sleep. Consider professional help for ongoing anxiety management.',
+    'depression': 'Maintain social connections, physical activity, and regular sleep patterns. Seek professional help for ongoing depression management.',
+    'stress': 'Practice relaxation techniques like deep breathing or meditation. Maintain physical activity and adequate sleep. Seek support from friends, family, or professionals if needed.',
+    'mood swings': 'Maintain regular sleep patterns, physical activity, and balanced nutrition. Track triggers and symptoms. Consider professional help for significant mood disturbances.',
+    'panic attack': 'Focus on slow, deep breathing. Remind yourself it will pass. Move to a quiet place if possible. Seek professional help for recurring panic attacks.',
+    
+    // Emergency symptoms
+    'stroke symptoms': 'CALL 911 IMMEDIATELY. Look for Face drooping, Arm weakness, Speech difficulties, Time to call emergency services.',
+    'heart attack symptoms': 'CALL 911 IMMEDIATELY. Symptoms include chest pain/pressure, pain in arms/back/neck/jaw, shortness of breath, cold sweat, nausea, lightheadedness.',
+    'difficulty breathing': 'SEEK IMMEDIATE MEDICAL ATTENTION by calling emergency services (911). This is a serious symptom requiring urgent care.',
+    'severe bleeding': 'Apply direct pressure with a clean cloth. If possible, elevate the injured area. CALL 911 FOR SEVERE OR UNCONTROLLED BLEEDING.',
+    'loss of consciousness': 'CALL 911 IMMEDIATELY. Check breathing and pulse. If trained, begin CPR if needed. Do not move the person unless necessary for safety.',
+    'poisoning': 'CALL POISON CONTROL (1-800-222-1222) or 911 IMMEDIATELY. Do not induce vomiting unless directed by medical professionals.'
   };
 
+  // Symptom categories for better pattern matching
+  const symptomCategories = {
+    respiratory: ['breathing', 'breath', 'cough', 'wheeze', 'sneezing', 'sneeze', 'phlegm', 'mucus', 'throat', 'nasal', 'nose', 'sinus', 'congestion', 'congested'],
+    digestive: ['stomach', 'nausea', 'vomit', 'diarrhea', 'constipation', 'bowel', 'intestinal', 'digestion', 'appetite', 'abdomen', 'abdominal', 'bloating', 'bloated', 'gas', 'heartburn', 'indigestion', 'acid reflux'],
+    cardiovascular: ['heart', 'chest', 'pulse', 'palpitation', 'blood pressure', 'hypertension', 'circulation', 'swelling', 'swollen', 'edema'],
+    neurological: ['head', 'headache', 'migraine', 'dizzy', 'dizziness', 'balance', 'vertigo', 'faint', 'fainting', 'confusion', 'memory', 'concentration', 'tingling', 'numbness', 'seizure', 'tremor'],
+    musculoskeletal: ['muscle', 'joint', 'bone', 'back', 'neck', 'shoulder', 'arm', 'leg', 'knee', 'ankle', 'wrist', 'sprain', 'strain', 'cramp', 'stiffness', 'pain'],
+    skin: ['rash', 'itch', 'hives', 'dry skin', 'sweat', 'sweating', 'blister', 'sore', 'wound', 'bruise', 'acne', 'eczema', 'psoriasis'],
+    general: ['fever', 'temperature', 'chills', 'fatigue', 'tired', 'tiredness', 'exhaustion', 'weakness', 'weight loss', 'weight gain', 'night sweat', 'sleep', 'insomnia'],
+    urinary: ['urination', 'urinate', 'pee', 'bladder', 'kidney', 'urine'],
+    reproductive: ['menstrual', 'period', 'menstruation', 'vaginal', 'penile', 'testicular', 'erectile', 'libido'],
+    mental: ['anxiety', 'anxious', 'worry', 'depression', 'depressed', 'mood', 'stress', 'stressed', 'mental', 'panic', 'emotion', 'emotional'],
+    emergency: ['emergency', 'severe', 'extreme', 'unbearable', 'worst', 'collapsed', 'unconscious', 'consciousness', 'stroke', 'heart attack', 'poisoning', 'overdose', 'suicide', 'dying']
+  };
+
+  // List of emergency conditions that always trigger emergency advice
+  const emergencyConditions = [
+    'chest pain', 'severe bleeding', 'difficulty breathing', 'shortness of breath', 
+    'stroke', 'heart attack', 'unconscious', 'loss of consciousness', 
+    'seizure', 'severe head injury', 'poisoning', 'overdose', 'suicidal',
+    'anaphylaxis', 'allergic reaction', 'drowning', 'choking', 'not breathing',
+    'severe burn', 'gunshot', 'stab wound', 'electric shock', 'broken bone',
+    'eye injury', 'severe abdominal pain'
+  ];
   // Simple translations for UI elements (expanded with Tamil)
   const translations = {
     en: {
@@ -127,20 +205,7 @@ function App() {
   const allSymptoms = Object.keys(symptomDatabase);
 
   // Symptom categories for better pattern matching
-  const symptomCategories = {
-    respiratory: ['breathing', 'breath', 'cough', 'wheeze', 'sneezing', 'sneeze', 'phlegm', 'mucus', 'throat', 'nasal', 'nose', 'sinus', 'congestion', 'congested'],
-    digestive: ['stomach', 'nausea', 'vomit', 'diarrhea', 'constipation', 'bowel', 'intestinal', 'digestion', 'appetite', 'abdomen', 'abdominal', 'bloating', 'bloated', 'gas', 'heartburn', 'indigestion', 'acid reflux'],
-    cardiovascular: ['heart', 'chest', 'pulse', 'palpitation', 'blood pressure', 'hypertension', 'circulation', 'swelling', 'swollen', 'edema'],
-    // Add more categories as needed...
-  };
 
-  // List of emergency conditions that always trigger emergency advice
-  const emergencyConditions = [
-    'chest pain', 'severe bleeding', 'difficulty breathing', 'shortness of breath', 
-    'stroke', 'heart attack', 'unconscious', 'loss of consciousness', 
-    'seizure', 'severe head injury', 'poisoning', 'overdose', 'suicidal',
-    // Add more emergency conditions as needed...
-  ];
 
   // Handle suggestions as user types
   const handleSymptomInput = (e) => {
